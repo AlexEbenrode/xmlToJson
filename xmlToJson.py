@@ -75,7 +75,12 @@ def main(argv):
     if input_path is None:
         assert False, "You must provide -i/--input argument"
 
-    search(input_path, os.path.basename(input_path))
+    if output_path == "output" and not os.path.exists("output"):
+        os.mkdir("output")
+
+    relative_path = output_path + "/" + os.path.basename(input_path)
+
+    search(input_path, relative_path)
 
 
 if __name__ == "__main__":
