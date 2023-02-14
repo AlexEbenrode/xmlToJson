@@ -8,4 +8,4 @@ python3 xmlToJson.py [-i path] [-o path]
 
 ## Options and arguments
 * -i --input: Input folder absolute path. Required argument;
-* -o --output: Output folder absolute path. Default: output directory in script folder;
+* -o --output: Output folder absolute path. Default: current working directory;
