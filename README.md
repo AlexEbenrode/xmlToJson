@@ -7,5 +7,5 @@ Search and convert all xml files include inner folders to json format.
 python3 xmlToJson.py [-i path] [-o path]
 
 ## Options and arguments
-* -i --input: Input folder absolute path. Required argument;
+* -i --input: Input folder absolute path.;
 * -o --output: Output folder absolute path. Default: current working directory;
