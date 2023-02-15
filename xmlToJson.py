@@ -11,7 +11,7 @@ def showHelp():
     print("Search and convert all xml files include inner folders to json format.\n")
     print("usage: python3 xmlToJson.py [-i path] [-o path]")
     print("Options and arguments:")
-    print("-i --input\t: Input folder absolute path. Required argument;")
+    print("-i --input\t: Input folder absolute path.")
     print(
         "-o --output\t: Output folder absolute path. Default: output directory in script folder;"
     )
@@ -36,7 +36,8 @@ def xmlToJson(xml):
 
 
 def search(path, relative_path):
-    os.mkdir(relative_path)
+    if not os.path.exists(relative_path):
+        os.mkdir(relative_path)
     for name in os.listdir(path):
         new_path = path + "/" + name
         if os.path.isdir(new_path):
@@ -60,7 +61,7 @@ def main(argv):
         sys.exit(2)
 
     input_path = None
-    output_path = "output"
+    output_path = None
 
     for o, a in opts:
         if o in ("-h", "--help"):
@@ -73,7 +74,13 @@ def main(argv):
         else:
             assert False, "unhandled option"
     if input_path is None:
-        assert False, "You must provide -i/--input argument"
+        input_path = input("Enter input folder absolute path: ")
+
+    if output_path is None:
+        output_path = (
+            input("Enter output folder absolute path. Default: CWD/output: ")
+            or "output"
+        )
 
     if output_path == "output" and not os.path.exists("output"):
         os.mkdir("output")
